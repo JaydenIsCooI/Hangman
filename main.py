@@ -81,7 +81,6 @@ def win(window, label_guess_word):
         window.quit()
 
 
-
 def loose(window, label_guess_word):
     label_guess_word.config(text=f"You Lost! The word was {word}.")
     freeze(window)
