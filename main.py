@@ -72,39 +72,24 @@ def restart_program():
 
 
 def win(window, label_guess_word):
-    label_guess_word.config(text=f'Answer: {word.upper()}')
-    win_frame = tkinter.Frame(master=window, width=900, height=900, background='#808080')
-    win_frame.place(relx=0.5, rely=0.5, anchor='center')
-    label_you_win = tkinter.Label(master=win_frame, pady=20, text="You Win!", fg="red")
-    button_play_again = tkinter.Button(master=win_frame, command=restart_program, pady=10, text="Play Again")
-    button_close = tkinter.Button(master=win_frame, command=sys.exit, pady=10, text="   Close   ")
-    label_you_win.pack()
-    button_play_again.pack()
-    button_close.pack()
-    button_play_again.place(relx=0.3, rely=0.4, anchor='center')
-    button_close.place(relx=0.7, rely=0.4, anchor='center')
-    win_frame.place(x=0, y=0, relwidth=0.5, relheight=0.5)
-    button_play_again.bind("<Return>", lambda event: on_enter(event, button_play_again))
-    button_close.bind("<Return>", lambda event: on_enter(event, button_close))
+    label_guess_word.config(text=f"You Win! The word was {word}.")
     freeze(window)
+    answer = tkinter.messagebox.askyesno("Hangman", "Play Again?")
+    if answer:
+        restart_program()
+    else:
+        window.quit()
+
 
 
 def loose(window, label_guess_word):
-    label_guess_word.config(text=f'Answer: {word.upper()}')
-    loose_frame = tkinter.Frame(master=window, width=900, height=900, background='#808080')
-    loose_frame.place(relx=0.5, rely=0.5, anchor='center')
-    label_you_loose = tkinter.Label(master=loose_frame, pady=20, text="You Loose!", fg="red")
-    button_play_again = tkinter.Button(master=loose_frame, command=restart_program, pady=10, text="Play Again")
-    button_close = tkinter.Button(master=loose_frame, command=sys.exit, pady=10, text="   Close   ")
-    label_you_loose.pack()
-    button_play_again.pack()
-    button_close.pack()
-    button_play_again.place(relx=0.3, rely=0.4, anchor='center')
-    button_close.place(relx=0.7, rely=0.4, anchor='center')
-    loose_frame.place(x=0, y=0, relwidth=0.5, relheight=0.5)
-    button_play_again.bind("<Return>", lambda event: on_enter(event, button_play_again))
-    button_close.bind("<Return>", lambda event: on_enter(event, button_close))
+    label_guess_word.config(text=f"You Lost! The word was {word}.")
     freeze(window)
+    answer = tkinter.messagebox.askyesno("Hangman", "Play Again?")
+    if answer:
+        restart_program()
+    else:
+        window.quit()
 
 
 def clicked(guess, entry_guess, pen, label_guess_letters, label_guess_word, word_progress_display, window):
