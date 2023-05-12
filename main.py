@@ -72,7 +72,7 @@ def restart_program():
 
 
 def win(window, label_guess_word):
-    label_guess_word.config(text=f"You Win! The word was {word}.")
+    label_guess_word.config(text=f"You Win! The word was {word}.", font=144)
     freeze(window)
     answer = tkinter.messagebox.askyesno("Hangman", "Play Again?")
     if answer:
@@ -96,7 +96,7 @@ def clicked(guess, entry_guess, pen, label_guess_letters, label_guess_word, word
     if guess not in word:
         incorrect_guesses += 1
         guessed_letters.append(guess.upper())
-        label_guess_letters.config(text=f'Guessed Letters:\n{get_guessed_letters(guessed_letters)}')
+        label_guess_letters.config(text=f'Guessed Letters:\n{get_guessed_letters(guessed_letters)}', font=144)
         pen.draw_man(incorrect_guesses)
     else:
         correct_guesses.append(guess.upper())
@@ -147,8 +147,8 @@ def main():
         word_progress_display += letter + ' '
 
     label_guess_letters = tkinter.Label(master=frame_text,
-                                        text=f'Guessed Letters:\n{get_guessed_letters(guessed_letters)}')
-    label_guess_word = tkinter.Label(master=frame_text, pady=25, text=word_progress_display)
+                                        text=f'Guessed Letters:\n{get_guessed_letters(guessed_letters)}', font=144)
+    label_guess_word = tkinter.Label(master=frame_text, pady=25, text=word_progress_display, font=144)
     entry_guess = tkinter.Entry(master=frame_text, font=144)
 
     entry_guess.bind("<KeyRelease>" or "<<ComboboxSelected>>", lambda event: on_validate(event, button_submit))
@@ -170,7 +170,7 @@ def main():
 
     # Packing button
     button_submit.pack()
-    button_submit.place(x=570, y=118)
+    button_submit.place(x=570, y=130)
 
     # Frame for turtle
     frame_turtle = tkinter.Frame(master=window, pady=25)
